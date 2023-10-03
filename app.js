@@ -1,17 +1,17 @@
 let image=document.querySelector('.slider img');
 let next=document.querySelector('.next');
 let prev=document.querySelector('.prev');
-let slideIndex=0;
 let dots=document.querySelectorAll('.alldot span');
-let images=[
+var slideIndex=0;
+
+const images=[
+
     './images/image1.png',
     './images/image2.jpg',
     './images/image4.jpeg'
 ]
 
-
 image.src=images[slideIndex];
-image.setAttribute('id',slideIndex);
 
 function autoPlay() {
     slideIndex++;
@@ -24,7 +24,7 @@ function autoPlay() {
 
 setInterval(() => {
     autoPlay();
-}, 4000);
+}, 5000);
 next.onclick=()=>{
     autoPlay();
 }
@@ -38,16 +38,17 @@ prev.onclick = () => {
 }
 
 for(let dot of dots) {
-    dot.onclick = function() {       
-        let data_id = this.getAttribute('data-id')
-        for(let i=0; i<images.length;i++) {
-            if(document.querySelector('img').getAttribute('id') === data_id) {
-                document.querySelector('img').classList.remove('d-none') 
-            }
-            else{
-                document.querySelector('img').classList.add('d-none') 
-            }
-        }
-        
+    dot.onclick = function(e) {
+        console.log(1);
+
+
+        let data_id = e.target.getAttribute('data-id')
+
+
+        image.src=images[data_id-1];
+
     }
 }
+
+
+
